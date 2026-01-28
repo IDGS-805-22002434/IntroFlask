@@ -1,5 +1,23 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
 {% block content %}
-    <h1>Alumnos</h1>
-{%endblock%}
+  {% import '_macros.html' as macros %}
+  <h1>Alumnos</h1>
+  <form actions="" method="POST" novalidate>
+    {{form.csrf_token}}
+
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <div class="mb-3">{{ macros.campoNuevo(form.matricula, class='form-control') }}</div>
+    <div class="mb-3">{{ macros.campoNuevo(form.nombre, class='form-control') }}</div>
+    <div class="mb-3">{{ macros.campoNuevo(form.apellidoP, class='form-control') }}</div>
+    <div class="mb-3">{{ macros.campoNuevo(form.apellidoM, class='form-control') }}</div>
+    <div class="mb-3">{{ macros.campoNuevo(form.correo, class='form-control') }}</div>
+    <button class="btn btn-primary" type="submit">Guardar</button>
+  </form>
+
+  <h1>Matricula: {{ mat }}</h1>
+  <h1>Nombre: {{ nom }}</h1>
+  <h1>Apellido Paterno: {{ apa }}</h1>
+  <h1>Apeliido Materno: {{ ama }}</h1>
+  <h1>Correo: {{ email }}</h1>
+{% endblock %}
